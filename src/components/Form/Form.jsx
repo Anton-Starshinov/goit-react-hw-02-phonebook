@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
+import { FormStyled, LabelForm, InputForm, ButtonForm } from './Form.styled';
 
 class Form extends Component {
   state = {
@@ -26,10 +28,10 @@ class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor={this.nameId}>
+      <FormStyled onSubmit={this.handleSubmit}>
+        <LabelForm htmlFor={this.nameId}>
           Name
-          <input
+          <InputForm
             id={this.nameId}
             type="text"
             name="name"
@@ -39,10 +41,10 @@ class Form extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-        </label>
-        <label htmlFor={this.nameId}>
+        </LabelForm>
+        <LabelForm htmlFor={this.nameId}>
           Number
-          <input
+          <InputForm
             id={this.nameId}
             type="tel"
             name="number"
@@ -52,11 +54,15 @@ class Form extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+        </LabelForm>
+        <ButtonForm type="submit">Add contact</ButtonForm>
+      </FormStyled>
     );
   }
 }
 
 export default Form;
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
